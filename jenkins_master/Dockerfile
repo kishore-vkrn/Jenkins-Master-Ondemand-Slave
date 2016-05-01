@@ -74,10 +74,10 @@ RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d/
 # Copy initialize script for Jenkins
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 RUN chmod +x /usr/local/bin/jenkins.sh
-COPY init.groovy $JENKINS_HOME/init.groovy
-COPY 'scripts/executors.groovy' '$JENKINS_HOME/init.groovy.d/executors.groovy'
-COPY 'scripts/00_set_authorization.groovy' '$JENKINS_HOME/init.groovy.d/authorization.groovy'
-COPY 'scripts/01_configure_docker_cloud.groovy' '$JENKINS_HOME/init.groovy.d/configuredockercloud.groovy'
+COPY init.groovy /var/jenkins/init.groovy
+COPY scripts/executors.groovy $JENKINS_HOME/init.groovy.d/executors.groovy
+COPY scripts/00_set_authorization.groovy $JENKINS_HOME/init.groovy.d/authorization.groovy
+COPY scripts/01_configure_docker_cloud.groovy $JENKINS_HOME/init.groovy.d/configuredockercloud.groovy
 
 # Plugins script add
 COPY plugins.sh /usr/local/bin/plugins.sh
