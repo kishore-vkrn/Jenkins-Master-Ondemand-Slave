@@ -75,7 +75,7 @@ RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 RUN chmod +x /usr/local/bin/jenkins.sh
 COPY scripts/executors.groovy $JENKINS_HOME/init.groovy.d/1executors.groovy
-COPY scripts/admin_user.groovy $JENKINS_HOME/init.groovy.d/2admin_user.groovy
+COPY scripts/simple_user.groovy $JENKINS_HOME/init.groovy.d/2admin_user.groovy
 COPY scripts/dockerplugin_config.groovy $JENKINS_HOME/init.groovy.d/3dockerplugin_config.groovy
 
 # Plugins script add

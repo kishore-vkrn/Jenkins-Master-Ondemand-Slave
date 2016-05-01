@@ -1,5 +1,5 @@
 import hudson.model.*;
 import jenkins.model.*;
 
-println "--> disabling master executors"
+println "--> master executor set as  1"
 Jenkins.instance.setNumExecutors(1)
