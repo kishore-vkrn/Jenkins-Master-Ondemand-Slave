@@ -80,20 +80,20 @@ def docker_settings = [:]
 docker_settings =
         [
                 [
-                        name: 'swarm',
-                        serverUrl: 'http://127.0.0.1:4243',
-                        containerCapStr: '100',
+                        name: 'AWS Swarm',
+                        serverUrl: 'http://52.202.83.90:2375',
+                        containerCapStr: '300',
                         connectionTimeout: 5,
                         readTimeout: 15,
                         credentialsId: dockerCertificatesDirectoryCredentialsId,
                         version: '',
                         templates: [
                                 [
-                                        image: 'batmat/jenkins-ssh-slave',
-                                        labelString: 'some label for demo',
+                                        image: 'jenkins_slave',
+                                        labelString: 'On-demand-Slaves',
                                         remoteFs: '',
                                         credentialsId: jenkinsSlaveCredentialsId,
-                                        idleTerminationMinutes: '5',
+                                        idleTerminationMinutes: '2',
                                         sshLaunchTimeoutMinutes: '1',
                                         jvmOptions: '',
                                         javaPath: '',
@@ -102,7 +102,7 @@ docker_settings =
                                         cpuShares: 0,
                                         prefixStartSlaveCmd: '',
                                         suffixStartSlaveCmd: '',
-                                        instanceCapStr: '100',
+                                        instanceCapStr: '200',
                                         dnsString: '',
                                         dockerCommand: '',
                                         volumesString: '',
