@@ -81,7 +81,7 @@ docker_settings =
         [
                 [
                         name: 'AWS Swarm',
-                        serverUrl: 'http://52.202.83.90:2375',
+                        serverUrl: 'http://52.202.83.90:5000',
                         containerCapStr: '300',
                         connectionTimeout: 5,
                         readTimeout: 15,

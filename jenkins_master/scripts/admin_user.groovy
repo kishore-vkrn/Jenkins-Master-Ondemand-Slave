@@ -17,6 +17,9 @@ for (u in allUsers) {
 		 strategy.add(Jenkins.ADMINISTER, arg[0])
 		 instance.setAuthorizationStrategy(strategy)
 	 }
+   else {
+     println "1236/admin created"
+   }
 	 instance.setSecurityRealm(hudsonRealm)
 	 instance.save()
  }
