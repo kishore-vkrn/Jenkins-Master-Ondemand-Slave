@@ -182,4 +182,4 @@ docker_settings.each { cloud ->
 }
 
 Jenkins.instance.clouds.addAll(dockerClouds)
-println 'Configured docker cloud.'
+println '         --> Configured docker cloud.'
