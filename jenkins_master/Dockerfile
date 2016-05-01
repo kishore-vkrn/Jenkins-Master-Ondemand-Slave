@@ -68,13 +68,13 @@ RUN touch $JENKINS_HOME/copy_reference_file.log
 # `/usr/share/jenkins/ref/` contains all reference configuration we want
 # to set on a fresh new installation. Use it to bundle additional plugins
 # or config file with your custom jenkins Docker image
-RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
+RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d/
 
 # Copy initialize script for Jenkins
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 RUN chmod +x /usr/local/bin/jenkins.sh
-COPY 'custom scripts/00_set_authorization.groovy' '/usr/share/jenkins/init.groovy.d/00_set_authorization.groovy'
-COPY 'custom scripts/01_configure_docker_cloud.groovy' '/usr/share/jenkins/ref/init.groovy.d/01_configure_docker_cloud.groovy'
+COPY 'scripts/00_set_authorization.groovy' '/usr/share/jenkins/init.groovy.d/00_set_authorization.groovy'
+COPY 'scripts/01_configure_docker_cloud.groovy' '/usr/share/jenkins/ref/init.groovy.d/01_configure_docker_cloud.groovy'
 
 # Plugins script add
 COPY plugins.sh /usr/local/bin/plugins.sh
