@@ -14,6 +14,8 @@ import com.nirima.jenkins.plugins.docker.*
 import com.nirima.jenkins.plugins.docker.launcher.*
 import com.nirima.jenkins.plugins.docker.strategy.*
 
+def instance = Jenkins.getInstance()
+
 println "--> disabling master executors"
 Jenkins.instance.setNumExecutors(1)
 
