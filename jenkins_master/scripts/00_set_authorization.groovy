@@ -3,7 +3,7 @@ import jenkins.model.*
 import hudson.model.User
 import hudson.security.*
 
-String[] arg = ['1236', 'admin', 'Y'] as String[]
+String[] arg = ['1236', 'admin', 'N'] as String[]
 def instance = Jenkins.getInstance()
 def hudsonRealm = new HudsonPrivateSecurityRealm(false)
 def allUsers = User.getAll()
