@@ -93,13 +93,13 @@ docker_settings =
                                         labelString: 'On-demand-Slaves',
                                         remoteFs: '',
                                         credentialsId: jenkinsSlaveCredentialsId,
-                                        idleTerminationMinutes: '2',
-                                        sshLaunchTimeoutMinutes: '1',
+                                        idleTerminationMinutes: '',
+                                        sshLaunchTimeoutMinutes: '',
                                         jvmOptions: '',
                                         javaPath: '',
-                                        memoryLimit: 2500,
-                                        memorySwap: 0,
-                                        cpuShares: 0,
+                                        memoryLimit: '',
+                                        memorySwap: '',
+                                        cpuShares: '',
                                         prefixStartSlaveCmd: '',
                                         suffixStartSlaveCmd: '',
                                         instanceCapStr: '200',
@@ -160,7 +160,7 @@ docker_settings.each { cloud ->
         dockerTemplate.setLauncher(dockerComputerSSHLauncher)
 
         dockerTemplate.setMode(Node.Mode.NORMAL)
-        dockerTemplate.setNumExecutors(1)
+        dockerTemplate.setNumExecutors(3)
         dockerTemplate.setRemoveVolumes(true)
         dockerTemplate.setRetentionStrategy(new DockerOnceRetentionStrategy(10))
         dockerTemplate.setPullStrategy(DockerImagePullStrategy.PULL_LATEST)
