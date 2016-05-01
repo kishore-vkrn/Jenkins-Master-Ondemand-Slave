@@ -160,7 +160,7 @@ docker_settings.each { cloud ->
         dockerTemplate.setLauncher(dockerComputerSSHLauncher)
 
         dockerTemplate.setMode(Node.Mode.NORMAL)
-        dockerTemplate.setNumExecutors(2)
+        dockerTemplate.setNumExecutors(20)
         dockerTemplate.setRemoveVolumes(false)
         dockerTemplate.setRetentionStrategy(new DockerOnceRetentionStrategy(15))
         dockerTemplate.setPullStrategy(DockerImagePullStrategy.PULL_LATEST)
