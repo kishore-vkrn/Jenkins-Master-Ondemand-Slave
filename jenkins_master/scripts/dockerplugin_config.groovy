@@ -58,7 +58,7 @@ if(!foundId) {
     UsernamePasswordCredentialsImpl creds =
             new UsernamePasswordCredentialsImpl(CredentialsScope.SYSTEM,
                     jenkinsSlaveCredentialsId,
-                    'Test Jenkins.',
+                    'slave SSH password',
                     'jenkins',
                     'jenkins')
     domainCredentialsMap[Domain.global()].add(creds)
@@ -81,7 +81,7 @@ docker_settings =
         [
                 [
                         name: 'AWS Swarm',
-                        serverUrl: 'http://52.202.83.90:5000',
+                        serverUrl: 'http://52.202.83.90:2375',
                         containerCapStr: '300',
                         connectionTimeout: 5,
                         readTimeout: 15,
