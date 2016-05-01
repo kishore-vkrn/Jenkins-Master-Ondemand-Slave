@@ -13,12 +13,9 @@ RUN apt-get install -y openssh-server
 RUN sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd
 RUN mkdir -p /var/run/sshd
 
-# Tini SHA
-ENV TINI_SHA 066ad710107dc7ee05d3aa6e4974f01dc98f3888
-
 # Use tini as subreaper in Docker container to adopt zombie processes
-RUN curl -fsSL https://github.com/krallin/tini/releases/download/v0.5.0/tini-static -o /bin/tini && chmod +x /bin/tini \
-  && echo "$TINI_SHA  /bin/tini" | sha1sum -c -
+COPY tini-static  /bin/tini
+RUN  chmod +x /bin/tini  && echo "$TINI_SHA /bin/tini"
 
 ######################################################## BUILD TOOLS #########################################################
 # GIT
