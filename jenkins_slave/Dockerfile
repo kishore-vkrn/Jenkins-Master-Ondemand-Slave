@@ -62,7 +62,7 @@ ENV JENKINS_OPTS="--handlerCountStartup=100 --handlerCountMax=300  --webroot=/va
 # `/usr/share/jenkins/ref/` contains all reference configuration we want
 # to set on a fresh new installation. Use it to bundle additional plugins
 # or config file with your custom jenkins Docker image
-RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
+RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d/
 
 ########################################################### JENKINS  ###########################################################
 ENV JENKINS_VERSION 1.647
