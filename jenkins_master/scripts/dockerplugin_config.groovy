@@ -58,7 +58,7 @@ if(!foundId) {
     UsernamePasswordCredentialsImpl creds =
             new UsernamePasswordCredentialsImpl(CredentialsScope.SYSTEM,
                     jenkinsSlaveCredentialsId,
-                    'slave SSH password',
+                    'Slave credentials for SSH',
                     'jenkins',
                     'jenkins')
     domainCredentialsMap[Domain.global()].add(creds)
@@ -97,9 +97,9 @@ docker_settings =
                                         sshLaunchTimeoutMinutes: '1',
                                         jvmOptions: '',
                                         javaPath: '',
-                                        memoryLimit: 3000,
-                                        memorySwap: 40,
-                                        cpuShares: 1,
+                                        memoryLimit: 2500,
+                                        memorySwap: 0,
+                                        cpuShares: 0,
                                         prefixStartSlaveCmd: '',
                                         suffixStartSlaveCmd: '',
                                         instanceCapStr: '200',
@@ -160,9 +160,9 @@ docker_settings.each { cloud ->
         dockerTemplate.setLauncher(dockerComputerSSHLauncher)
 
         dockerTemplate.setMode(Node.Mode.NORMAL)
-        dockerTemplate.setNumExecutors(3)
-        dockerTemplate.setRemoveVolumes(true)
-        dockerTemplate.setRetentionStrategy(new DockerOnceRetentionStrategy(10))
+        dockerTemplate.setNumExecutors(2)
+        dockerTemplate.setRemoveVolumes(false)
+        dockerTemplate.setRetentionStrategy(new DockerOnceRetentionStrategy(15))
         dockerTemplate.setPullStrategy(DockerImagePullStrategy.PULL_LATEST)
 
         templates.add(dockerTemplate)
@@ -173,8 +173,8 @@ docker_settings.each { cloud ->
                     templates,
                     cloud.serverUrl,
                     cloud.containerCapStr,
-                    cloud.connectTimeout ?: 10,
-                    cloud.readTimeout ?: 5,
+                    cloud.connectTimeout ?: 15,
+                    cloud.readTimeout ?: 15,
                     cloud.credentialsId,
                     cloud.version
             )
@@ -182,4 +182,4 @@ docker_settings.each { cloud ->
 }
 
 Jenkins.instance.clouds.addAll(dockerClouds)
-println ' --> Configured docker cloud.'
+println 'Configured docker cloud.'
