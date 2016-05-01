@@ -56,6 +56,7 @@ RUN chmod 644 /opt/jenkins.war
 ENV JENKINS_HOME /var/jenkins
 ENV JENKINS_PLUGINS_LOCAL $JENKINS_HOME/plugins
 ENV JENKINS_UC http://jenkins-updates.cloudbees.com
+ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 ENV JAVA_OPTS="-Xmx8192m"
 ENV JENKINS_OPTS="--handlerCountStartup=100 --handlerCountMax=300  --webroot=/var/cache/jenkins/war"
 
