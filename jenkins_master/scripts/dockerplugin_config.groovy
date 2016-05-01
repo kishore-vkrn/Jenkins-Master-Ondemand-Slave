@@ -97,7 +97,7 @@ docker_settings =
                                         sshLaunchTimeoutMinutes: '1',
                                         jvmOptions: '',
                                         javaPath: '',
-                                        memoryLimit: ,
+                                        memoryLimit: 3000,
                                         memorySwap: ,
                                         cpuShares: ,
                                         prefixStartSlaveCmd: '',
