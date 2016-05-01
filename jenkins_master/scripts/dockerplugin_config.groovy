@@ -97,9 +97,9 @@ docker_settings =
                                         sshLaunchTimeoutMinutes: '1',
                                         jvmOptions: '',
                                         javaPath: '',
-                                        memoryLimit: 2500,
-                                        memorySwap: 0,
-                                        cpuShares: 0,
+                                        memoryLimit: ,
+                                        memorySwap: ,
+                                        cpuShares: ,
                                         prefixStartSlaveCmd: '',
                                         suffixStartSlaveCmd: '',
                                         instanceCapStr: '200',
@@ -160,7 +160,7 @@ docker_settings.each { cloud ->
         dockerTemplate.setLauncher(dockerComputerSSHLauncher)
 
         dockerTemplate.setMode(Node.Mode.NORMAL)
-        dockerTemplate.setNumExecutors(1)
+        dockerTemplate.setNumExecutors(3)
         dockerTemplate.setRemoveVolumes(true)
         dockerTemplate.setRetentionStrategy(new DockerOnceRetentionStrategy(10))
         dockerTemplate.setPullStrategy(DockerImagePullStrategy.PULL_LATEST)
@@ -173,8 +173,8 @@ docker_settings.each { cloud ->
                     templates,
                     cloud.serverUrl,
                     cloud.containerCapStr,
-                    cloud.connectTimeout ?: 15, // Well, it's one for the money...
-                    cloud.readTimeout ?: 15,    // Two for the show
+                    cloud.connectTimeout ?: 10,
+                    cloud.readTimeout ?: 5,
                     cloud.credentialsId,
                     cloud.version
             )
@@ -182,4 +182,4 @@ docker_settings.each { cloud ->
 }
 
 Jenkins.instance.clouds.addAll(dockerClouds)
-println 'Configured docker cloud.'
+println ' --> Configured docker cloud.'
