@@ -1,0 +1,40 @@
+$DOCKER_OPTS" | grep -qE -e '-H|--host'
+
+Swarm1 52.202.83.90
+Swarm2 52.70.135.227 
+Swarm3 52.200.191.240
+
+docker  -H tcp://52.202.83.90:2375 run --rm swarm create
+820c9d3afa6376466a21bb04371c3d57
+
+sudo docker -H tcp://52.70.135.227:2375 run -d swarm join --addr=52.70.135.227:2375 token://820c9d3afa6376466a21bb04371c3d57
+
+docker -H tcp://52.70.135.227:2375 ps
+
+sudo docker -H tcp://52.200.191.240:2375 run -d swarm join --addr=52.200.191.240:2375 token://820c9d3afa6376466a21bb04371c3d57
+
+docker -H tcp://52.200.191.240:2375 ps
+
+docker -H tcp://52.202.83.90:2375 run -d -p 5000:5000 swarm manage token://820c9d3afa6376466a21bb04371c3d57
+
+docker -H tcp://52.202.83.90:2375 run --rm swarm list \ token://820c9d3afa6376466a21bb04371c3d57
+..
+Enable swarm clusteree 
+!!!!!!!!!!!!!11
+54dd8138538503755e003f7761d8d6f2
+
+ docker run swarm join  token://54dd8138538503755e003f7761d8d6f2 --addr=52.202.83.90:2375
+
+ docker run swarm join  token://54dd8138538503755e003f7761d8d6f2 --addr=52.70.135.227:2375 
+ 
+  docker run swarm join  token://54dd8138538503755e003f7761d8d6f2 --addr=52.200.191.240:2375
+
+ docker run swarm list token://54dd8138538503755e003f7761d8d6f2 52.202.83.90:2375
+ 
+ ----------
+ manger setup
+ on master
+ docker run -p 5000:2375 swarm manage token://54dd8138538503755e003f7761d8d6f2
+ 
+ docker -H tcp://52.202.83.90:5000 run -dt --name swarm-test busybox /bin/sh
+ docker -H tcp://52.202.83.90:5000 ps
