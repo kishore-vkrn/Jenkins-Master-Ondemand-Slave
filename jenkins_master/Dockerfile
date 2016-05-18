@@ -5,6 +5,8 @@ MAINTAINER Kishore Ramanan
 EXPOSE 8080
 EXPOSE 50000
 
+VOLUME /var/jenkins_home
+
 # Update & Install common packages
 RUN apt-get update && apt-get install -y wget git curl zip && apt-get install -y software-properties-common
 
