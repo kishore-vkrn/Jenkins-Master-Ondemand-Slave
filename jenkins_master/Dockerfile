@@ -83,6 +83,7 @@ COPY scripts/dockerplugin_config.groovy $JENKINS_HOME/init.groovy.d/3dockerplugi
 # Plugins script add
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN chmod +x /usr/local/bin/plugins.sh
 
 # Tini as the entry point to manage zombie processes
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
