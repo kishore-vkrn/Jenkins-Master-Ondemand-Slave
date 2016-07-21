@@ -92,5 +92,5 @@ ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 
 # Copy Jenkins-Job_builder Files
-RUN mkdir /opt/jjb & cd /opt/jjb
+RUN mkdir /opt/jjb && cd /opt/jjb
 COPY jjb/ /opt/jjb/

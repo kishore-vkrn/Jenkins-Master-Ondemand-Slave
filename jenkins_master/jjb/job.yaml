@@ -1,0 +1,25 @@
+- job:
+    name: Jenkins_JJB
+    project-type: freestyle
+    defaults: global
+    description: 'Do not edit this job through the web!'
+    block-downstream: false
+    concurrent: true
+    node: Mesos_slave
+    scm:
+    - git:
+        url: https://github.com/kishorramanan/war_hello
+        branches:
+          - master
+          - stable
+    triggers:
+      - pollscm: '@hourly'
+    builders:
+      - maven-builder:
+          name: mvn3
+          pom: pom.xml
+          goals: clean install
+
+- docker:
+    name: docker_image
+
