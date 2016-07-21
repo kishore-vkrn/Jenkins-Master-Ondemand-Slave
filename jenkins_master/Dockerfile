@@ -8,7 +8,7 @@ EXPOSE 50000
 VOLUME /var/jenkins_home
 
 # Update & Install common packages
-RUN apt-get update && apt-get install -y wget git curl zip && apt-get install -y software-properties-common
+RUN apt-get update && apt-get install -y wget git curl zip && apt-get install -y software-properties-common  jenkins-job-builder
 
 # Install a basic SSH server
 RUN apt-get install -y openssh-server
@@ -90,3 +90,7 @@ ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
 # To install the plugins
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+
+# Copy Jenkins-Job_builder Files
+RUN mkdir /opt/jjb & cd /opt/jjb
+COPY jjb/ /opt/jjb/
