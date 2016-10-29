@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+    <meta charset="utf-8" />
+    <script src="Assets/Js/Jquery.js"></script>
+    <link href="Assets/Css/bootstrap.css" rel="stylesheet" />
+    <script src="Assets/Js/clipboard.js"></script>
+    <style>
+        body {
+            background-color: #ececec;
+        }
+
+        h5 {
+            margin: 3px;
+        }
+
+        .custom-search-text {
+            background-color: yellow;
+        }
+
+        .btn-md {
+            padding: 5px 10px;
+            background-color: darkgrey;
+            color: white;
+            border-radius: 5px;
+            cursor:pointer; 
+            letter-spacing:2px;
+
+        }
+        .btn-md:hover{
+            background-color:#545353;
+            letter-spacing:3px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function fetch(url) {
+            $.ajaxSetup({
+                scriptCharset: "utf-8", //or "ISO-8859-1"
+                contentType: "application/json; charset=utf-8"
+            });
+            $.getJSON('http://whateverorigin.org/get?url=' +
+                encodeURIComponent(url) + '&callback=?',
+                function (data) {
+                    //If the expected response is text/plain
+                    $('#imgloading').hide();
+                    $("#fetch-container").html(data.contents);
+                    //If the expected response is JSON
+                    //var response = $.parseJSON(data.contents);
+                });
+        }
+        function copyToClipboard() {
+            console.log($('#result-container').text());
+            clipboard.copy($('#result-container').text());
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#btnurlgo').click(function () {
+                $("#fetch-container").html("<img src='Assets/Images/loading.gif' style='left: calc(50% - 155px);position: absolute;top: calc(50% - 155px);'  id='imgloading'/>");
+                fetch($('#txturl').val().replace('www.', 'http://'));
+            });
+            $('#btnkeysearch').click(function () {
+                $('#result-container').html("");
+                //$("td:contains('" + $('#txtkeyword').val() + "'):not(:has(*))").css("background-color", "yellow");
+                $("div:contains('" + $('#txtkeyword').val() + "')").addClass("custom-search-text");
+                $('#lbloccur').html("No Of Occurances : " + $('#fetch-container .custom-search-text').length);
+                $('.custom-search-text').each(function () {
+                    $('#result-container').append("<br/><br/>" + $(this).html() + "<br/><br/> \n");
+                });
+            });
+
+            $('#btnsearchclear').click(function () {
+                $('#txtkeyword').val("");
+                $('#result-container').html("");
+                $('#lbloccur').html("");
+                $('#fetch-container .custom-search-text').removeClass('custom-search-text');
+            });
+
+        });
+
+    </script>
+    <div class="col-xs-12 p-t-1 p-b-1 font-weight-bold text-xs-center"><h3>Search A Page</h3></div>
+
+
+    <div class="container">
+        <div class="col-xs-12">
+            <p><h4>Search page</h4></p>
+            <div id="fetch-container" class="col-xs-6" style="height:220px;overflow:scroll;background-color:white;">
+
+            </div>
+            <div class="col-xs-6 p-l-3" style="margin-top:45px;">
+                <div class="p-b-1 p-t-1">
+                    <h5 style="display: inline;margin-right: 15px;float: left;width: 80px;">URL</h5><input id="txturl" type="text" placeholder="Enter The Url" class="col-xs-6" style="margin-right: 5px;" /><input id="btnurlgo" type="submit" value="GO" tabindex="1" style="width: 115px;" />
+                </div>
+                <div class="p-b-1 p-t-1">
+                    <h5 style="display: inline;margin-right: 15px;float: left;width: 80px;">Keyword</h5><input id="txtkeyword" type="text" placeholder="Type Keyword To Search" class="col-xs-6" style="margin-right: 5px;" /><input style="margin-right:5px" id="btnkeysearch" type="button" value="Search" /><input id="btnsearchclear" type="button" value="Clear" />
+                </div>
+                <h6 id="lbloccur" style="margin:3px"></h6>
+            </div>
+        </div>
+        <div class="col-xs-12" style="margin-top:10px;margin-bottom:8px;">
+            <div class="col-xs-6 p-a-0">
+                <h4 style="display: inline;">Result Page</h4>
+                <span style="float:right;" class="btn-md"  onclick="copyToClipboard()">copy</span>
+            </div>
+        </div>
+        <div class="col-xs-12">
+
+            <div id="result-container" class="col-xs-6" style="height:220px;overflow:scroll;background-color:white;"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
